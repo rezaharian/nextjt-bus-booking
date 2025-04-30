@@ -12,13 +12,12 @@ export default function HomePage() {
     <main className="flex flex-col min-h-screen">
       <Navbar />
       <HeroSection />
-      <WhyMe/>
-      <RutePopuler/>
-      <AboutMe/>
-      {/* <MitraSection/> */}
+      <WhyMe />
+      <RutePopuler />
+      <AboutMe />
+      {/* <MitraSection /> */}
       {/* <CardSection /> */}
-      {/* Footer akan kita buat setelah ini */}
-      <Footer/>
+      <Footer />
     </main>
   );
 }
