@@ -1,17 +1,20 @@
-// app/booking/page.tsx
 'use client';
 
+import { Suspense, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-export default function BookingForm() {
+function BookingForm() {
   const searchParams = useSearchParams();
   const busId = searchParams.get('busId');
   const seats = searchParams.get('seats');
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Simpan data booking (bisa post ke API di sini)
-    alert('Booking Berhasil!');
+    alert(`Booking berhasil!\nBus ID: ${busId}\nKursi: ${seats}\nNama: ${name}\nTelepon: ${phone}\nEmail: ${email}`);
   };
 
   return (
@@ -24,18 +27,24 @@ export default function BookingForm() {
         <input
           type="text"
           placeholder="Nama Lengkap"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           required
           className="border p-2 rounded"
         />
         <input
           type="tel"
           placeholder="Nomor HP"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
           required
           className="border p-2 rounded"
         />
         <input
           type="email"
           placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
           className="border p-2 rounded"
         />
@@ -44,5 +53,13 @@ export default function BookingForm() {
         </button>
       </form>
     </div>
+  );
+}
+
+export default function BookingPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BookingForm />
+    </Suspense>
   );
 }
